@@ -17,15 +17,15 @@ const (
 	letterIdxMax  = 63 / letterIdxBits   // # of letter indices fitting in 63 bits
 )
 
-func New(n int, letterBytes string) string {
+func String(n int, letters string) string {
 	b := make([]byte, n)
 	// A src.Int63() generates 63 random bits, enough for letterIdxMax characters!
 	for i, cache, remain := n-1, rand.Int63(), letterIdxMax; i >= 0; {
 		if remain == 0 {
 			cache, remain = rand.Int63(), letterIdxMax
 		}
-		if idx := int(cache & letterIdxMask); idx < len(letterBytes) {
-			b[i] = letterBytes[idx]
+		if idx := int(cache & letterIdxMask); idx < len(letters) {
+			b[i] = letters[idx]
 			i--
 		}
 		cache >>= letterIdxBits
