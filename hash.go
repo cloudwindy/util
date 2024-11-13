@@ -3,14 +3,15 @@ package util
 import (
 	"crypto/md5"
 	"crypto/sha256"
+	"encoding/hex"
 )
 
-func SHA256Sum(data []byte) []byte {
+func SHA256Sum(data []byte) string {
 	sum := sha256.Sum256(data)
-	return sum[:]
+	return hex.EncodeToString(sum[:])
 }
 
-func MD5Sum(data []byte) []byte {
+func MD5Sum(data []byte) string {
 	sum := md5.Sum(data)
-	return sum[:]
+	return hex.EncodeToString(sum[:])
 }
