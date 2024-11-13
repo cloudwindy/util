@@ -2,18 +2,27 @@ package util
 
 import (
 	"encoding/hex"
+	"strconv"
 )
 
 func Pointer[T any](d T) *T {
 	return &d
 }
 
-func ByteString(s string) []byte {
+func ParseHexBytes(s string) []byte {
 	bs, err := hex.DecodeString(s)
 	if err != nil {
 		panic(err)
 	}
 	return bs
+}
+
+func ParseHexInt(s string) int {
+	n, err := strconv.ParseInt(s, 16, 0)
+	if err != nil {
+		panic(err)
+	}
+	return int(n)
 }
 
 func Reverse(s string) string {
